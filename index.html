@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+</head>
+<body>
+    <nav id="navbar">
+        <header>Main Concepts</header>
+        <a class="nav-link" href="#Hello_World">Hello World</a>
+        <a class="nav-link" href="#Introducing_JSX">Introducing JSX</a>
+        <a class="nav-link" href="#Rendering_Elements">Rendering Elements</a>
+        <a class="nav-link" href="#Components_and_Props">Components and Props</a>
+        <a class="nav-link" href="#State_and_Lifecycle">State and Lifecycle</a>
+        <a class="nav-link" href="#Handling_Events">Handling Events</a>
+    </nav>
+
+    <main id="main-doc">
+        <section id="Hello_World" class="main-section">
+            <header>Hello World</header>
+            <p>The smallest React example looks like this:</p>
+            <code>
+                ReactDOM.render(
+                    &lt;h1&gt;Hello, world!&lt;/h1&gt;,
+                    document.getElementById('root')
+                  );
+            </code>
+            <p>It displays a heading saying “Hello, world!” on the page.</p>
+            <p>Click the link above to open an online editor. Feel free to make some changes, and see how they affect the output. Most pages in this guide will have editable examples like this one.</p>
+            <h2>How to Read This Guide</h2>
+            <p>In this guide, we will examine the building blocks of React apps: elements and components. Once you master them, you can create complex apps from small reusable pieces.</p>
+            <div class="tip">
+                <strong><p>Tip</p></strong>
+                <p>This guide is designed for people who prefer learning concepts step by step. If you prefer to learn by doing, check out our practical tutorial. You might find this guide and the tutorial complementary to each other.</p>
+            </div>
+            <p>This is the first chapter in a step-by-step guide about main React concepts. You can find a list of all its chapters in the navigation sidebar. If you’re reading this from a mobile device, you can access the navigation by pressing the button in the bottom right corner of your screen.</p>
+            <p>Every chapter in this guide builds on the knowledge introduced in earlier chapters. You can learn most of React by reading the “Main Concepts” guide chapters in the order they appear in the sidebar. For example, “Introducing JSX” is the next chapter after this one.</p>
+            <h2>Let’s Get Started!</h2>
+            <p>Keep scrolling down, and you’ll find the link to the next chapter of this guide right before the website footer.</p>
+        </section>
+        <section id="Introducing_JSX" class="main-section">
+            <header>Introducing JSX</header>
+            <p>Consider this variable declaration:</p>
+            <code>const element = &lt;h1&gt;Hello, world!&lt;/h1&gt;;</code>
+            <p>This funny tag syntax is neither a string nor HTML.</p>
+            <p>It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.</p>
+            <p>JSX produces React “elements”. We will explore rendering them to the DOM in the next section. Below, you can find the basics of JSX necessary to get you started.</p>
+            <h2>Why JSX?</h2>
+            <p>React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.</p>
+            <p>Instead of artificially separating technologies by putting markup and logic in separate files, React separates concerns with loosely coupled units called “components” that contain both. We will come back to components in a further section, but if you’re not yet comfortable putting markup in JS, this talk might convince you otherwise.</p>
+            <p>React doesn’t require using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.</p>
+            <p>With that out of the way, let’s get started!</p>
+        </section>
+        <section id="Rendering_Elements" class="main-section">
+            <header>Rendering Elements</header>
+            <p>Elements are the smallest building blocks of React apps.</p>
+            <p>An element describes what you want to see on the screen:</p>
+            <code>const element = &lt;h1&gt; Hello, world h1;</code>
+            <p>Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.</p>
+            <div class="tips">
+                <strong><p>Note:</p></strong>
+                <p>One might confuse elements with a more widely known concept of “components”. We will introduce components in the next section. Elements are what components are “made of”, and we encourage you to read this section before jumping ahead.</p>
+            </div>
+            <hr/>
+            <h2>Rendering an Element into the DOM</h2>
+            <p>Let’s say there is a <pre><span>&lt;div&gt;&lt;/div&gt;</span></pre> somewhere in your HTML file:</p>
+            <code>
+                &lt;div id="root">&lt;/div&gt;
+            </code>
+            <p>We call this a “root” DOM node because everything inside it will be managed by React DOM.</p>
+            <p>Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.</p>
+            <p>To render a React element into a root DOM node, pass both to <pre><span>ReactDOM.render():</span></pre></p>
+            <code>const element = Hello, world;
+            ReactDOM.render(element, document.getElementById('root'));</code>
+            <p>It displays “Hello, world” on the page.</p>
+        </section>
+        <section id="Components_and_Props" class="main-section">
+            <header>Components and Props</header>
+            <p>Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a detailed component API reference here.</p>
+            <p>Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called “props”) and return React elements describing what should appear on the screen.</p>
+            <hr>
+            <h3>Function and Class Components</h3>
+            <p>The simplest way to define a component is to write a JavaScript function:</p>
+            <code>function Welcome(props) {
+                return &lt;h1&gt;Hello, {props.name}&lt;/h1&gt;;
+              }</code>
+              <p>This function is a valid React component because it accepts a single “props” (which stands for properties) object argument with data and returns a React element. We call such components “function components” because they are literally JavaScript functions.</p>
+              <p>You can also use an ES6 class to define a component:</p>
+              <code>class Welcome extends React.Component {
+                render() {
+                  return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+                }
+              }</code>
+            <ol>
+                <li>We call <pre><span>ReactDOM.render()</span></pre> with the <pre><span>&lt;Welcome name="Sara" /&gt;</span></pre> element.</li>
+                <li>React calls the Welcome component with <pre><span>{name: 'Sara'}</span></pre> as the props.</li>
+                <li>Our Welcome component returns a <pre><span>&lt;h1&gt;Hello, Sara&lt;/h1&gt;</span></pre> element as the result.</li>
+                <li>React DOM efficiently updates the DOM to match <pre><span>&lt;h1&gt;Hello, Sara&lt;/h1&gt;.</span></pre></li>
+
+            </ol>
+        </section>
+        <section id="State_and_Lifecycle" class="main-section">
+            <header>State and Lifecycle</header>
+            <p>This page introduces the concept of state and lifecycle in a React component. You can find a detailed component API reference here.</p>
+            <p>Consider the ticking clock example from one of the previous sections. In Rendering Elements, we have only learned one way to update the UI. We call ReactDOM.render() to change the rendered output:</p>
+            <code>function tick() {
+                const element = (
+                    &lt;div&gt;
+                        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+                        &lt;h2&gt;It is {new Date().toLocaleTimeString()}.&lt;/h2&gt;
+                    &lt;\div&gt;
+                );
+                ReactDOM.render(
+                  element,
+                  document.getElementById('root')
+                );
+              }
+              setInterval(tick, 1000);</code>
+            <hr/>
+        <h3>Converting a Function to a Class</h3>
+        <p>You can convert a function component like Clock to a class in five steps:</p>
+        <ol>
+            <li>Create an ES6 class, with the same name, that extends React.Component.</li>
+            <li>Add a single empty method to it called render().</li>
+            <li>Move the body of the function into the render() method.</li>
+            <li>Replace props with this.props in the render() body.</li>
+            <li>Delete the remaining empty function declaration.</li>
+        </ol>
+        </section>
+        <section id="Handling_Events" class="main-section">
+            <header>Handling Events</header>
+            <p>Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:</p>
+            <ul>
+                <li>React events are named using camelCase, rather than lowercase.</li>
+                <li>With JSX you pass a function as the event handler, rather than a string.</li>
+            </ul>
+            <p>For example, the HTML:</p>
+            <code>
+                &lt;button onclick="activateLasers()">
+                Activate Lasers
+                &lt;/button&gt;
+            </code>
+            <p>is slightly different in React:</p>
+            <code>
+                &lt;button onClick={activateLasers}>
+                    Activate Lasers
+                    &lt;/button&gt;
+            </code>
+            <p>Another difference is that you cannot return false to prevent default behavior in React. You must call preventDefault explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:</p>
+            <code>
+                &lt;a href="#" onclick="console.log('The link was clicked.'); return false">
+                    Click me
+                    &lt;/a&gt;
+            </code>
+            <p>In React, this could instead be:</p>
+            <code>
+                function ActionLink() {
+                    function handleClick(e) {
+                      e.preventDefault();
+                      console.log('The link was clicked.');
+                    }
+                    return (
+                      &lt;a href="#" onClick={handleClick}>
+                        Click me
+                        &lt;/a&gt;
+                    );
+                  }
+            </code>
+            <p>Here, e is a synthetic event. React defines these synthetic events according to the W3C spec, so you don’t need to worry about cross-browser compatibility. See the SyntheticEvent reference guide to learn more.</p>
+            <p>When using React, you generally don’t need to call addEventListener to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.</p>
+        </section>
+    </main>
+</body>
+</html>
